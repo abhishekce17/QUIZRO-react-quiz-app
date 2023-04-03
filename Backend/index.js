@@ -23,7 +23,7 @@ app.use(
 	cors({
 		// origin: "https://quizro-quiz.vercel.app",
 		origin: "http://localhost:3000",
-		// methods: "GET,POST,PUT,DELETE",
+		methods: "GET,POST,PUT,DELETE",
         // "Access-Control-Allow-Credentials" : true,
 		credentials: true,
 	})
