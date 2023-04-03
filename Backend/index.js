@@ -24,7 +24,7 @@ app.use(
 		// origin: "https://quizro-quiz.vercel.app",
 		origin: "*",
 		methods: "GET,POST,PUT,DELETE",
-		credentials: true,
+		// credentials: true,
 	})
 );
 app.use(express.static( __dirname+"/public"));
