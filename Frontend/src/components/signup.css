@@ -1,0 +1,47 @@
+.form{
+    height: calc(100vh - 56px);
+    width: 100%;
+    display: grid;
+    place-items: center;
+    grid-template-rows: 1fr;
+}
+.emailSignup{
+    height: auto;
+    width: auto;
+    display: grid;
+    padding: 20px;
+    background-color: var(--primary-color);
+}
+
+.emailSignup > * + *{
+    margin-top: 15px;
+}
+
+.name-section, .password-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+
+.emailSignup input{
+    font-size: 20px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    height: 40px;
+}
+
+.signup{
+    padding: 0;
+    font-size: 20px;
+    border: none;
+    height: 40px;
+    width: 100%;
+    color: #ffffff;
+    background-color: var(--dark-primary-color);
+}
+.alert{
+    margin:5px 0;
+    text-align: center;
+    color: #F55050;
+}

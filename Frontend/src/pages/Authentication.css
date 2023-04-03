@@ -1,0 +1,120 @@
+
+.auth-block, .email-auth, .password-show-toggle, .password-show-toggle > div, .social-method{
+    display: grid;
+}
+.auth-block{
+    height: calc(100vh - 56px);
+    grid-template-columns: 1fr;
+    place-items: center;
+}
+
+.email-auth{
+    height: auto;
+    background-color: var(--primary-color);
+    grid-template-columns: 1fr;
+}
+
+.email-auth input{
+    outline:none;
+    border: none;
+    width: 350px;
+    height: 40px;
+    margin: 20px;
+    padding: 7px;
+    font-size: 20px;
+    color: #161616;
+}
+
+.password-show-toggle > input{
+    width: 320px;
+    margin-right: 0;
+}
+
+.email-auth > button{
+    height: 54px;
+    font-size: 26px;
+    color: #ffffff;
+    border: none;
+    background-color: var(--dark-primary-color);
+    cursor: pointer;
+}
+
+.password-show-toggle{
+    grid-template-columns: 1fr auto;
+    column-gap: 0px;
+}
+
+.password-show-toggle > div{
+    position: relative;
+    width: 30px;
+    margin-top: 20px;
+    height: 54px;
+    font-size: 28px;
+    color: #395B64;
+    margin-right: 20px;
+    background-color: #ffffff;
+    place-items: center;
+}
+
+.password-show-toggle > div:hover::after{
+    content: "Show/hide password";
+    position: absolute;
+    padding: 5px;
+    color: #ffffff;
+    background-color: var(--dark-primary-color);
+    bottom:50px;
+    font-size: 15px;
+    width: max-content;
+}
+
+hr{
+    width: 400px;
+}
+
+
+.social-method{
+grid-template-rows: 1fr 1fr;
+height: 54px;
+font-size: 18px;
+text-align: center;
+place-items: center;
+margin-bottom: 5px;
+color: #454545;
+}
+
+.icons{
+    padding-top: 3px;
+    width: 175px;
+    text-align: center;
+}
+
+.icons:active{
+    background: #E7F6F2;
+}
+
+form p {
+    margin-top: 40px;
+}
+form p a{
+    display: inline;
+}
+
+.social-method > div{
+    width: 100%;
+    padding: 8px 0 ;
+    margin-bottom: 10px;
+    border: 1px solid var(--primary-color);
+}
+
+@media screen and (max-width : 450px) {
+    .auth-block > form {
+        width: 80%;
+    }   
+    .email-auth input{
+        font-size: 1.1rem;
+        width: 88%;
+    }
+    .email-auth input[name = "email"]{
+        width: 82.5%;
+    }
+}

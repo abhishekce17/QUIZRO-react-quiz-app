@@ -1,0 +1,13 @@
+.error-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 56px);
+}
+
+.error-page > div{
+    color: var(--primary-color);
+    font-size: 2.8rem;
+    text-align: center;
+}

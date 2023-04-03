@@ -1,0 +1,44 @@
+.signup-methods{
+    height: calc(100vh - 56px);
+    display: grid;
+    place-items: center;
+}
+
+.signup-methods > div{
+    background-color: var(--primary-color);
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+    width: 300px;
+    height: auto;
+    padding: 20px;
+}
+
+.signup-methods > div > *  + div{
+    margin-top: 10px;
+}
+
+.signup-methods > div > div > a >p{
+    color: #000;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    font-size: 20px;
+}
+
+.signup-methods > div > div > a >p > span{
+ transform: translateY(2px);   
+}
+
+.signup-methods > div > div > a :active{
+    background-color: #E7F6F2;
+    color: #000;
+}
+
+.signup-methods > div > .signup-email > a >p{
+    background-color: var(--dark-primary-color);
+    color: #ffffff;
+}
