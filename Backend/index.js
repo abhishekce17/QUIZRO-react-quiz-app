@@ -35,17 +35,6 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/quizoperations", require("./routes/quizoperations"));
 app.use("/api/submit/responses", require("./routes/submitresponse"));
 
-
-if(process.env.NODE_ENV=='production'){
-    const path = require('path')
-    
-    app.get('/',(req,res)=>{
-        app.use(express.static(path.resolve(__dirname,'Frontend','build')))
-        res.sendFile(path.resolve(__dirname,'Frontend','build','index.html'))
-    })
-}
-
- 
 app.listen(5000, function(err){
     if(!err){
         console.log("server is running on port 5000");
