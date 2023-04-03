@@ -26,6 +26,7 @@ app.use(
 		methods: "GET,POST,PUT,DELETE",
         // "Access-Control-Allow-Credentials" : true,
 		credentials: true,
+        mode : "no-cors"
 	})
 );
 app.use(express.static( __dirname+"/public"));
