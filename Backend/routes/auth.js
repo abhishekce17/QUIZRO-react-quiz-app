@@ -43,8 +43,8 @@ router.post("/signup",
                 user.then(user => {
                     const authToken = jwt.sign(user.id, JWT_SECRET);
                     res.json({ authToken })
-                }).catch(() => {
-                    res.json({ err: "This Email is already registered" })
+                }).catch((err) => {
+                    res.json({ err: err })
                 });
 
             });
