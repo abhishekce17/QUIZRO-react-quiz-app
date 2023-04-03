@@ -9,7 +9,7 @@ const Register = () => {
   let navigate = useNavigate()
   async function googleAuthenticat(e){
     e.preventDefault()
-    window.open("api/auth/google/callback","_self")
+    window.open("https://quizro-quiz-backend.vercel.app/api/auth/google/callback","_self")
   }
 
 	const getUser = async () => {

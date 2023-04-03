@@ -24,6 +24,7 @@ const Signup = () => {
   }
 
   async function handleEvent() {
+    console.log(signCredential)
     const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signup', {
       method: 'POST',
       headers: {
