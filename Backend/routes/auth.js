@@ -99,7 +99,7 @@ router.get("/login/success", (req, res) => {
 			userId: authToken,
 		});
 	} else {
-		res.status(403).json({ error: true, message: "Not Authorized" });
+		res.status(404).json({ error: true, message: "Not Authorized" });
 	}
 });
 
