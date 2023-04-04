@@ -88,7 +88,9 @@ const QuestionSchema = new mongoose.Schema({
     },
 
     "Response Count": {
-        type: Number
+        type: Number,
+        required: true,
+        default : 0
     }
 
 
