@@ -9,7 +9,7 @@ const passport = require("passport");
 const app = express();
 connectToMongo();
 
-app.use(	cookieSession({
+app.use(	session({
     name: "session",
     keys: ["clientsSecretQuizroAuthentication"],
     maxAge: 24 * 60 * 60 * 100,
