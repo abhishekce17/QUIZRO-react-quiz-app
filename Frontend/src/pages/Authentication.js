@@ -33,9 +33,9 @@ const Authentication = () => {
     }
   };
 
-  useEffect(() => {
-    getUser()
-  }, [])
+  // useEffect(() => {
+  //   getUser()
+  // }, [])
 
   async function authenticat(e) {
     e.preventDefault()

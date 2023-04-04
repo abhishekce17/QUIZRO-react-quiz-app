@@ -1,7 +1,7 @@
 import React from "react"
 import "./navbar.css"
 import { RiLightbulbFlashLine, RiLoginBoxLine, RiLogoutBoxRLine } from "react-icons/ri"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { IoMdMenu } from 'react-icons/io'
 import { VscChromeClose } from 'react-icons/vsc'
 import { useContext } from "react"
@@ -10,13 +10,15 @@ import QuizContext from "../Context/quizContext"
 const Navbar = () => {
   const quizContext = useContext(QuizContext)
   const location = useLocation()
+  let navigate = useNavigate()
   function showMenu(){
     quizContext.hamburgerStatus[1](prev=>!prev)
   }
   function logOut(e) {
     e.preventDefault()
     localStorage.removeItem("token")
-    window.open(`https://quizro-quiz-backend.vercel.app/api/auth/logout`, "_self")
+    navigate("https://quizro-quiz.vercel.app/")
+    // window.open(`https://quizro-quiz-backend.vercel.app/api/auth/logout`, "_self")
   }
 
   return (
