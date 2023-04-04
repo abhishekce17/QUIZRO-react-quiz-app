@@ -19,13 +19,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// app.use(
-// 	cors({
-// 		origin: "https://quizro-quiz.vercel.app",
-// 		methods: "GET,POST,PUT,DELETE",
-// 		credentials: true,
-// 	})
-// );
+app.use(
+	cors({
+		origin: "https://quizro-quiz.vercel.app",
+		methods: "GET,POST,PUT,DELETE",
+		credentials: true,
+	})
+);
 app.use(express.static( __dirname+"/public"));
 app.set("view engine", "ejs");
 app.use(express.json())
