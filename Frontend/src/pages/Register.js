@@ -7,10 +7,10 @@ import "./Register.css"
 
 const Register = () => {
   let navigate = useNavigate()
-  async function googleAuthenticat(e){
-    e.preventDefault()
-    window.open("https://quizro-quiz-backend.vercel.app/api/auth/google/callback","_self")
-  }
+  // async function googleAuthenticat(e){
+  //   e.preventDefault()
+  //   window.open("https://quizro-quiz-backend.vercel.app/api/auth/google/callback","_self")
+  // }
 
 	const getUser = async () => {
 		try {
@@ -24,9 +24,9 @@ const Register = () => {
 			console.log(err);
 		}
 	};
-	useEffect(() => {
-		getUser();
-	}, []);
+	// useEffect(() => {
+	// 	// getUser();
+	// }, []);
 
 
   return (
@@ -38,10 +38,10 @@ const Register = () => {
         {/* <div className="icon-Microsoft">
           <Link to="#" ><p>Sign up with Microsoft <span><FaMicrosoft style={{color:"#1363DF"}} /></span></p> </Link>
         </div> */}
-        <p>or</p>
+        {/* <p>or</p>
         <div className="signup-email">
           <Link to="email-signup" ><p>Sign up with email <span><GrMail /></span></p></Link>
-        </div>
+        </div> */}
       </div>
     </div>
   )

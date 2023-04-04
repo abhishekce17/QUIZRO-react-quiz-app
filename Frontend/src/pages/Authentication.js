@@ -14,10 +14,10 @@ const Authentication = () => {
   function handleClick() {
     setShowStatus(!showStatus)
   }
-  async function googleAuthenticat(e) {
-    e.preventDefault()
-    window.open("https://quizro-quiz-backend.vercel.app/api/auth/google/callback", "_self")
-  }
+  // async function googleAuthenticat(e) {
+  //   e.preventDefault()
+  //   window.open("https://quizro-quiz-backend.vercel.app/api/auth/google/callback", "_self")
+  // }
 
   const getUser = async () => {
     try {
@@ -81,12 +81,12 @@ const Authentication = () => {
             <button type="submit" >Login</button>
           </div>
           <hr style={{ width: "100%" }} />
-          <div className="social-auth">
-            <div className="social-method" >
-              <div onClick={googleAuthenticat} style={{ cursor: "pointer" }} className="icons"><FcGoogle /> Sign in with google </div>
+          {/* <div className="social-auth"> */}
+            {/* <div className="social-method" > */}
+              {/* <div onClick={googleAuthenticat} style={{ cursor: "pointer" }} className="icons"><FcGoogle /> Sign in with google </div> */}
               {/* <div onClick={() => { handleAuth("microsoft") }} className="icons" ><FaMicrosoft style={{ color: "#1363DF" }} /> Sign wint microsoft </div> */}
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
           <center>
             <p>don't have account, <Link to="/register">create here</Link> </p>
           </center>
