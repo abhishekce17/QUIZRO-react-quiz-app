@@ -9,11 +9,17 @@ const passport = require("passport");
 const app = express();
 connectToMongo();
 
-app.use(	session({
-    name: "session",
-    keys: ["clientsSecretQuizroAuthentication"],
-    maxAge: 24 * 60 * 60 * 100,
-}))
+app.use(	session(
+    {
+        secret: 'clientsSecretQuizroAuthentication',
+        saveUninitialized: true,
+        resave: false,
+        maxAge: 1000 * 60 * 15,
+        cookie:{
+            secure: true
+               }
+        }
+    ))
 
 app.use(passport.initialize());
 app.use(passport.session());
