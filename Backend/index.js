@@ -2,17 +2,17 @@
 const connectToMongo = require("./db")
 const express = require("express");
 const cors = require("cors")
-const session = require("express-session");
+var session = require('cookie-session');
 const passport = require("passport");
 
 
 const app = express();
 connectToMongo();
 
-app.use(session({
-    secret: "clientsSecretQuizroAuthentication", //any string character
-    resave: false,
-    saveUninitialized: true,
+app.use(	cookieSession({
+    name: "session",
+    keys: ["clientsSecretQuizroAuthentication"],
+    maxAge: 24 * 60 * 60 * 100,
 }))
 
 app.use(passport.initialize());

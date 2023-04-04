@@ -117,7 +117,7 @@ router.get(
 	passport.authenticate("google", {
 		successRedirect: "https://quizro-quiz.vercel.app/register",
 		failureRedirect: "/login/failed",
-	}, (req, res)=>{ console.log(req.user) })
+	})
 );
 
 router.get("/logout", (req, res) => {
