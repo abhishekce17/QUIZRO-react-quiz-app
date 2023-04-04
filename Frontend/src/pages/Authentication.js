@@ -88,7 +88,7 @@ const Authentication = () => {
             {/* </div> */}
           {/* </div> */}
           <center>
-            <p>don't have account, <Link to="/register">create here</Link> </p>
+            <p>don't have account, <Link to="/register/email-signup">create here</Link> </p>
           </center>
         </form>
       </div>

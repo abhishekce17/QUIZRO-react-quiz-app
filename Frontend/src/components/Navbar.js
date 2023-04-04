@@ -17,7 +17,7 @@ const Navbar = () => {
   function logOut(e) {
     e.preventDefault()
     localStorage.removeItem("token")
-    navigate("https://quizro-quiz.vercel.app/")
+    navigate("/")
     // window.open(`https://quizro-quiz-backend.vercel.app/api/auth/logout`, "_self")
   }
 
