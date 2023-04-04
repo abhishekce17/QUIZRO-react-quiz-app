@@ -45,3 +45,18 @@
     text-align: center;
     color: #F55050;
 }
+
+@media screen and (max-width : 950px) {
+    .emailSignup{
+        height: auto;
+        width: 70vw;
+    }
+    .name-section, .password-section{
+        grid-template-columns: 1fr;
+        row-gap: 15px;
+    }
+    .name-section input, .password-section input, .emailSignup input, .form > div > button{
+        height: 35px;
+        font-size: 1rem;
+    }
+}
