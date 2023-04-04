@@ -32,16 +32,16 @@ const Register = () => {
   return (
     <div className="signup-methods">
       <div>
-        <div className="icon-google">
+        {/* <div className="icon-google">
           <Link tp="#" onClick={googleAuthenticat} ><p>Sign up with Google <span><FcGoogle /></span></p></Link>
-        </div>
+        </div> */}
         {/* <div className="icon-Microsoft">
           <Link to="#" ><p>Sign up with Microsoft <span><FaMicrosoft style={{color:"#1363DF"}} /></span></p> </Link>
         </div> */}
-        {/* <p>or</p>
+        {/* <p>or</p> */}
         <div className="signup-email">
           <Link to="email-signup" ><p>Sign up with email <span><GrMail /></span></p></Link>
-        </div> */}
+        </div>
       </div>
     </div>
   )

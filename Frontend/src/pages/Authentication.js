@@ -80,7 +80,7 @@ const Authentication = () => {
             </div>
             <button type="submit" >Login</button>
           </div>
-          <hr style={{ width: "100%" }} />
+          {/* <hr style={{ width: "100%" }} /> */}
           {/* <div className="social-auth"> */}
             {/* <div className="social-method" > */}
               {/* <div onClick={googleAuthenticat} style={{ cursor: "pointer" }} className="icons"><FcGoogle /> Sign in with google </div> */}
