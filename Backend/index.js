@@ -11,15 +11,10 @@ connectToMongo();
 
 app.use(	session(
     {
-        secret: 'clientsSecretQuizroAuthentication',
-        saveUninitialized: true,
-        resave: false,
-        maxAge: 1000 * 60 * 15,
-        cookie:{
-            secure: true
-               }
-        }
-    ))
+    name: "session",
+    keys: ["clientsSecretQuizroAuthentication"],
+    maxAge: 24 * 60 * 60 * 100,
+}))
 
 app.use(passport.initialize());
 app.use(passport.session());
