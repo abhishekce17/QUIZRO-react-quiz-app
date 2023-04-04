@@ -59,7 +59,7 @@ const QuizDash = () => {
                   <BsThreeDotsVertical onClick={() => { showdotMenu(index) }} />
                   <div className="dot-menu">
                     {/* <div onClick={hidedotMenu} >Edit</div> */}
-                    <div onClick={(e) => { hidedotMenu(e, eachtData.Title, `https://quizro-quiz-backend.vercel.app/attemp/quizro/quiz/id/${eachtData._id}`) }} >Share</div>
+                    <div onClick={(e) => { hidedotMenu(e, eachtData.Title, `https://quizro-quiz.vercel.app/attemp/quizro/quiz/id/${eachtData._id}`) }} >Share</div>
                   </div>
                 </div>
                 <div className="quiz-ans-res" >
