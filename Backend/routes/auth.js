@@ -39,7 +39,7 @@ router.post("/signup",
         }
         try {
             bcrypt.hash(req.body.password,  saltRounds, (err, hash) => {
-                const user = Users.create({ ...req.body, password: hash })
+                const user = Users.create({ ...req.body, username : `${req.body["first name"]} ${req.body["last name"]}`, password: hash })
                 user.then(user => {
                     const authToken = jwt.sign(user.id, JWT_SECRET);
                     res.json({ authToken })
