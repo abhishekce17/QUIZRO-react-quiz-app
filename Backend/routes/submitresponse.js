@@ -66,7 +66,7 @@ router.post("/submitPersonalInfo", (req, res) => {
         const respo = req.body.type === "quiz" ? Response.create({ "personal info": req.body["personal info"], QuizId: req.body.QuizId }) : FormResponses.create({ "personal info": req.body["personal info"], QuizId: req.body.QuizId })
         respo.then((data) => {
             if (data) {
-                const respoCount = req.body.type === "quizes" ? Questions.findByIdAndUpdate(req.body.QuizId, { $inc: { "Response Count": 1 } }) : FormQuestion.findByIdAndUpdate(req.body.QuizId, { $inc: { "Response Count": 1 } })
+                const respoCount = req.body.type === "quiz" ? Questions.findByIdAndUpdate(req.body.QuizId, { $inc: { "Response Count": 1 } }) : FormQuestion.findByIdAndUpdate(req.body.QuizId, { $inc: { "Response Count": 1 } })
                 respoCount.then(res.status(200).json({ success: true, responseId: data.id }))
             }
         })
