@@ -11,7 +11,7 @@ const QuizDash = () => {
 
   const [userData, setUserData] = useState([])
   async function fetchData() {
-    const apiData = await fetch('https://quizro-quiz.vercel.app/api/quizoperations/getdataQuiz', {
+    const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/quizoperations/getdataQuiz', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
