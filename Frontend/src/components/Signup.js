@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./signup.css"
+import Loading from './Loading'
 
 const Signup = () => {
   let navigate = useNavigate()
+  const [isLoading, setLoader] = useState(false);
   const [signCredential, setSignupCredential] = useState({
     "first name": "",
     "last name": "",
@@ -22,9 +24,9 @@ const Signup = () => {
     if (check.check == signCredential.password) handleEvent()
     setCheck({ ...check, status: check.check == signCredential.password })
   }
-
+  
   async function handleEvent() {
-    console.log(signCredential)
+    setLoader(true);
     const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signup', {
       method: 'POST',
       headers: {
@@ -43,6 +45,8 @@ const Signup = () => {
 
   return (
     <>
+    {
+      isLoading ? <Loading /> :
       <form method="POST" className="form" onSubmit={formEvent} >
         <div>
           {!check.status && <div className="alert" > password doesn't match </div>}
@@ -63,6 +67,7 @@ const Signup = () => {
           </center>
         </div>
       </form>
+    }
     </>
   )
 }

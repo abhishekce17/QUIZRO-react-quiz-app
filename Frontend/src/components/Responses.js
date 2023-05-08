@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Error from '../pages/404'
 import "../pages/demo.css"
 import StartFormResponse from './StartFormResponse'
 import StartQuiz from './StartQuiz'
+import Loading from './Loading'
 
 const Responses = () => {
   const location = useLocation()
-  let naviate = useNavigate()
   const [linkValidation, setLinkValidation] = useState(true)
   const [fetchedQuestion, setFetchedQuestions] = useState({})
   const [quizAttempt, setQuizAttempt] = useState(false)
@@ -144,7 +144,7 @@ const Responses = () => {
             }
           </> :
           <Routes>
-            <Route path="*" element={<Error />} />
+            <Route path="*" element={<Loading />} />
           </Routes>
       }
       </div>

@@ -5,9 +5,11 @@ import { FcGoogle } from "react-icons/fc"
 import axios from "axios";
 import "./Authentication.css"
 import { Link, Navigate, useNavigate } from "react-router-dom"
+import Loading from "../components/Loading";
 
 const Authentication = () => {
   const [showStatus, setShowStatus] = useState(true)
+  const [isLoading, setLoader] = useState(false);
   const [credential, setCredential] = useState({ email: "", password: "" })
   const [invalidCredentials, setInvalidCredentials] = useState(false)
   let navigate = useNavigate()
@@ -27,7 +29,7 @@ const Authentication = () => {
         localStorage.setItem("token", apiData.data.userId)
         navigate("/quiztools/create-quiz")
       }
-     
+
     } catch (err) {
       console.log(err);
     }
@@ -39,6 +41,7 @@ const Authentication = () => {
 
   async function authenticat(e) {
     e.preventDefault()
+    setLoader(true)
     const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signin', {
       method: 'POST',
       headers: {
@@ -51,7 +54,7 @@ const Authentication = () => {
       localStorage.setItem("token", response.authToken)
       navigate("/quiztools/create-quiz")
     }
-    else if(apiData.status === 500) {
+    else if (apiData.status === 500) {
       setInvalidCredentials(true)
     }
   }
@@ -66,31 +69,35 @@ const Authentication = () => {
   return (
     localStorage.getItem("token") !== null ? <Navigate to="/quiztools/create-quiz" /> :
       <div className="auth-block" >
-        <form method="POST" onSubmit={authenticat} >
-          { invalidCredentials && <center>
-            <p style={{ color: "red", fontSize: "1.2rem" }} >email or password is invalid</p>
-          </center>}
-          <div className="email-auth">
-            <input type="email" value={credential.email} name="email" onChange={handleChange} placeholder="email" required />
-            <div className="password-show-toggle">
-              <input type={showStatus ? "password" : "text"} name="password" value={credential.password} onChange={handleChange} placeholder="password" required />
-              <div className="toggle-btn" onClick={handleClick} >
-                {showStatus ? <BiHide /> : <BiShow />}
+
+        {isLoading ? <Loading /> :
+
+          <form method="POST" onSubmit={authenticat} >
+            {invalidCredentials && <center>
+              <p style={{ color: "red", fontSize: "1.2rem" }} >email or password is invalid</p>
+            </center>}
+            <div className="email-auth">
+              <input type="email" value={credential.email} name="email" onChange={handleChange} placeholder="email" required />
+              <div className="password-show-toggle">
+                <input type={showStatus ? "password" : "text"} name="password" value={credential.password} onChange={handleChange} placeholder="password" required />
+                <div className="toggle-btn" onClick={handleClick} >
+                  {showStatus ? <BiHide /> : <BiShow />}
+                </div>
               </div>
+              <button type="submit" >Login</button>
             </div>
-            <button type="submit" >Login</button>
-          </div>
-          {/* <hr style={{ width: "100%" }} /> */}
-          {/* <div className="social-auth"> */}
+            {/* <hr style={{ width: "100%" }} /> */}
+            {/* <div className="social-auth"> */}
             {/* <div className="social-method" > */}
-              {/* <div onClick={googleAuthenticat} style={{ cursor: "pointer" }} className="icons"><FcGoogle /> Sign in with google </div> */}
-              {/* <div onClick={() => { handleAuth("microsoft") }} className="icons" ><FaMicrosoft style={{ color: "#1363DF" }} /> Sign wint microsoft </div> */}
+            {/* <div onClick={googleAuthenticat} style={{ cursor: "pointer" }} className="icons"><FcGoogle /> Sign in with google </div> */}
+            {/* <div onClick={() => { handleAuth("microsoft") }} className="icons" ><FaMicrosoft style={{ color: "#1363DF" }} /> Sign wint microsoft </div> */}
             {/* </div> */}
-          {/* </div> */}
-          <center>
-            <p>don't have account, <Link to="/register/email-signup">create here</Link> </p>
-          </center>
-        </form>
+            {/* </div> */}
+            <center>
+              <p>don't have account, <Link to="/register/email-signup">create here</Link> </p>
+            </center>
+          </form>
+        }
       </div>
   )
 }
