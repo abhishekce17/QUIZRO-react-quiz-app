@@ -21,10 +21,6 @@ const QuizDash = () => {
     const data = await apiData.json()
     if (apiData.status === 200) {
       setUserData(data.quizData)
-      console.log(data.quizData)
-    }
-    else if (apiData.status === 401) {
-      console.log("401")
     }
   }
   useEffect(() => {
