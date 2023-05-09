@@ -55,6 +55,7 @@ const Authentication = () => {
       navigate("/quiztools/create-quiz")
     }
     else if (apiData.status === 500) {
+      isLoading(false)
       setInvalidCredentials(true)
     }
   }
