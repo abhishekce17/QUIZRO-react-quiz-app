@@ -39,6 +39,9 @@ const Signup = () => {
       localStorage.setItem("token", response.authToken)
       navigate("/quiztools/create-quiz")
     }
+    else{
+      console.log(response)
+    }
 
   }
 
