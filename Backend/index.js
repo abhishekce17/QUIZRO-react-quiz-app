@@ -2,7 +2,7 @@
 const connectToMongo = require("./db")
 const express = require("express");
 const cors = require("cors")
-var session = require('express-session');
+var session = require('cookie-session');
 const passport = require("passport");
 
 
@@ -14,25 +14,19 @@ app.use(session(
     name: "session",
     keys: ["clientsSecretQuizroAuthentication"],
     maxAge: 24 * 60 * 60 * 100,
-    cookie: {
-      sameSite: "none",
-    }
   }))
-
-app.use(
-  cors({
-    origin: "https://quizro-quiz.vercel.app",
-    preflightContinue: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
-
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 
+app.use(
+  cors({
+    origin: "https://quizro-quiz.vercel.app",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(express.json())
