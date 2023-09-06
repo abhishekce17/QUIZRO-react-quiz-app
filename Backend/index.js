@@ -1,4 +1,4 @@
-//jshint esversion:6
+	//jshint esversion:6
 const connectToMongo = require("./db")
 const express = require("express");
 const cors = require("cors")
@@ -16,17 +16,26 @@ app.use(	session(
     maxAge: 24 * 60 * 60 * 100,
 }))
 
+app.use(
+  cors({
+    origin: "https://quizro-quiz.vercel.app",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use(
-	cors({
-		origin: "*",
-		methods: "GET,POST,PUT,DELETE",
-		credentials: true,
-	})
-);
+// app.use(
+// 	cors({
+// 		origin: "*",
+// 		methods: "GET,POST,PUT,DELETE",
+// 		credentials: true,
+// 	})
+// );
 app.use(express.static( __dirname+"/public"));
 app.set("view engine", "ejs");
 app.use(express.json())
