@@ -9,17 +9,16 @@ const passport = require("passport");
 const app = express();
 connectToMongo();
 
-app.use(session({
-  secret: 'clientsSecretQuizroAuthentication', // Replace with your actual secret key
-  resave: false,
-  saveUninitialized: true,
-}))
+// app.use(session({
+//   secret: 'clientsSecretQuizroAuthentication', // Replace with your actual secret key
+//   resave: false,
+//   saveUninitialized: true,
+// }))
 
 app.use(
   cors({
     origin: "https://quizro-quiz.vercel.app",
     methods: "GET,POST,PUT,DELETE",
-    credentials: true,
   })
 );
 
