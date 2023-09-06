@@ -21,12 +21,7 @@ app.use(session({
   resave: false
 }))
 
-app.use(
-  cors({
-    origin: "https://quizro-quiz.vercel.app",
-    methods: "GET,POST,PUT,DELETE",
-  })
-);
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
