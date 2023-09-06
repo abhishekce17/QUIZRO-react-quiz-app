@@ -52,15 +52,14 @@ const Authentication = () => {
       body: JSON.stringify(credential),
     })
     const response = await apiData.json()
-    if (apiData.status === 200) {
+    if (response.status === 200) {
       localStorage.setItem("token", response.authToken)
       navigate("/quiztools/create-quiz")
     }
-    else if (apiData.status === 500) {
+    else if (response.status === 500) {
       setLoader(false)
       setInvalidCredentials(true)
     }
-    console.log(apiData)
   }
 
   function handleChange(e) {
