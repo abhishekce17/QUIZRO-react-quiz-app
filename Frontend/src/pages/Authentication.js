@@ -41,9 +41,9 @@ const Authentication = () => {
 
   async function authenticat(e) {
     e.preventDefault()
+    setLoader(true)
     try {
 
-      setLoader(true)
       const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signin', {
         method: 'POST',
         // credentials: 'include',
@@ -54,11 +54,11 @@ const Authentication = () => {
         body: JSON.stringify(credential),
       })
       const response = await apiData.json()
-      if (response.status === 200) {
+      if (apiData.status === 200) {
         localStorage.setItem("token", response.authToken)
         navigate("/quiztools/create-quiz")
       }
-      else if (response.status === 500) {
+      else if (apiData.status === 500) {
         setLoader(false)
         setInvalidCredentials(true)
       }

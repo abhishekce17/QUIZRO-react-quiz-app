@@ -39,7 +39,7 @@ const Signup = () => {
       body: JSON.stringify(signCredential),
     })
     const response = await apiData.json()
-    if (response.status === 200) {
+    if (apiData.status === 200) {
       localStorage.setItem("token", response.authToken)
       navigate("/quiztools/create-quiz")
     }
