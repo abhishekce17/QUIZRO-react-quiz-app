@@ -41,10 +41,10 @@ const Signup = () => {
       navigate("/quiztools/create-quiz")
     }
     else {
-      setLoader(false);
       setErrorMsg(() => {
-        return { status: true, Msg: response.errors[0].msg }
+        return { status: true, Msg: response.errors[0] }
       })
+      setLoader(false);
     }
 
   }
