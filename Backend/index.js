@@ -15,10 +15,6 @@ app.use(session({
   saveUninitialized: true,
 }))
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 app.use(
   cors({
     origin: "https://quizro-quiz.vercel.app",
@@ -26,6 +22,11 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(express.json())
