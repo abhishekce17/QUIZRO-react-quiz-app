@@ -28,10 +28,8 @@ const Signup = () => {
 
   async function handleEvent() {
     setLoader(true);
-    const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signup', {
+    const apiData = await fetch('https://quizro-quiz-backend.vercel.app//api/auth/signup', {
       method: 'POST',
-      // credentials: 'include',
-      mode: "no-cors",
       headers: {
         'Content-Type': 'application/json',
         // 'Access-Control-Allow-Origin': '*'

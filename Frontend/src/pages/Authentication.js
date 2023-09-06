@@ -42,15 +42,14 @@ const Authentication = () => {
   async function authenticat(e) {
     e.preventDefault()
     setLoader(true)
+    console.log(credential)
     try {
 
-      const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signin', {
+      const apiData = await fetch('https://quizro-quiz-backend.vercel.app//api/auth/signin', {
         method: 'POST',
-        // credentials: 'include',
-        mode: "no-cors",
-        // headers: {
-        //   'Content-Type': 'application/json',
-        // },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(credential),
       })
       const response = await apiData.json()
@@ -59,6 +58,7 @@ const Authentication = () => {
         navigate("/quiztools/create-quiz")
       }
       else if (apiData.status === 500) {
+        console.log(response)
         setLoader(false)
         setInvalidCredentials(true)
       }
