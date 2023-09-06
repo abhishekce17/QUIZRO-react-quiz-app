@@ -9,6 +9,11 @@ const passport = require("passport");
 const app = express();
 connectToMongo();
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://quizro-quiz.vercel.app");
+  next();
+});
+
 app.use(session(
   {
     name: "session",
@@ -20,13 +25,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use(
-  cors({
-    origin: "https://quizro-quiz.vercel.app",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://quizro-quiz.vercel.app",
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: true,
+//   })
+// );
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(express.json())
