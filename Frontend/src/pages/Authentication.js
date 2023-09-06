@@ -24,7 +24,7 @@ const Authentication = () => {
   const getUser = async () => {
     try {
       const url = `https://quizro-quiz-backend.vercel.app/api/auth/login/success`;
-      const apiData = await axios.get(url, { withCredentials: true });
+      const apiData = await axios.get(url, { withCredentials: true, header : "Access-Control-Allow-Origin" });
       if (apiData.status === 200) {
         localStorage.setItem("token", apiData.data.userId)
         navigate("/quiztools/create-quiz")
