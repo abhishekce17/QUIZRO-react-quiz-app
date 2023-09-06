@@ -9,10 +9,6 @@ const passport = require("passport");
 const app = express();
 connectToMongo();
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://quizro-quiz.vercel.app");
-  next();
-});
 
 app.use((req, res, next) => {
   if (req.method === "OPTIONS") {
@@ -21,22 +17,22 @@ app.use((req, res, next) => {
   }
   next();
 });
-
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://quizro-quiz.vercel.app");
   res.header("Access-Control-Allow-Credentials", true);
+
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
   next();
 });
-
 app.use(session(
   {
     name: "session",
     keys: ["clientsSecretQuizroAuthentication"],
     maxAge: 24 * 60 * 60 * 100,
   }))
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 // app.use(
 //   cors({
@@ -45,6 +41,10 @@ app.use(passport.session());
 //     credentials: true,
 //   })
 // );
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(express.json())
