@@ -9,12 +9,13 @@ const passport = require("passport");
 const app = express();
 connectToMongo();
 
+app.set('trust proxy', 1)
+
 app.use(session({
   cookie: {
     secure: true,
     maxAge: 60000
   },
-  store: new RedisStore(),
   secret: 'clientsSecretQuizroAuthentication',
   saveUninitialized: true,
   resave: false
