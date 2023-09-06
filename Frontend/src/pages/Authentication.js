@@ -46,6 +46,7 @@ const Authentication = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify(credential),
     })
@@ -55,7 +56,7 @@ const Authentication = () => {
       navigate("/quiztools/create-quiz")
     }
     else if (apiData.status === 500) {
-    setLoader(false)
+      setLoader(false)
       setInvalidCredentials(true)
     }
   }
