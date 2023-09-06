@@ -48,9 +48,9 @@ const Authentication = () => {
         method: 'POST',
         // credentials: 'include',
         mode: "no-cors",
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        // headers: {
+        //   'Content-Type': 'application/json',
+        // },
         body: JSON.stringify(credential),
       })
       const response = await apiData.json()
