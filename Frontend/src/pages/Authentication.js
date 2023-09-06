@@ -23,7 +23,7 @@ const Authentication = () => {
 
   const getUser = async () => {
     try {
-      const url = `/api/auth/login/success`;
+      const url = `https://quizro-quiz-backend.vercel.app/api/auth/login/success`;
       const apiData = await axios.get(url, { withCredentials: true });
       if (apiData.status === 200) {
         localStorage.setItem("token", apiData.data.userId)
@@ -42,11 +42,12 @@ const Authentication = () => {
   async function authenticat(e) {
     e.preventDefault()
     setLoader(true)
-    const apiData = await fetch('/api/auth/signin', {
+    const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: true,
       body: JSON.stringify(credential),
     })
     const response = await apiData.json()
