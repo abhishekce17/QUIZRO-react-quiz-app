@@ -12,19 +12,19 @@ const JWT_SECRET = process.env.JWT_SECRET
 const saltRounds = 10;
 
 passport.use(
-	new GoogleStrategy(
-		{
-			clientID: process.env.GOOGLE_CLIENT_ID,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL: "https://quizro-quiz-backend.vercel.app/api/auth/google/callback",
-			scope: ["profile", "email"],
-		},
+    new GoogleStrategy(
+        {
+            clientID: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            callbackURL: "https://quizro-quiz-backend.vercel.app/api/auth/google/callback",
+            scope: ["profile", "email"],
+        },
         function (accessToken, refreshToken, profile, cb) {
-                Users.findOrCreate({ googleId: profile.id, "first name": profile.name.givenName, "last name": profile.name.familyName, email: profile._json.email }, function (err, user) {
-                    return cb( err && "This email is already taken, try to login" , user);
-                })
+            Users.findOrCreate({ googleId: profile.id, "first name": profile.name.givenName, "last name": profile.name.familyName, email: profile._json.email }, function (err, user) {
+                return cb(err && "This email is already taken, try to login", user);
+            })
         }
-	)
+    )
 );
 passport.serializeUser(function (user, done) { done(null, user); });
 passport.deserializeUser(function (user, done) { done(null, user); });
@@ -38,7 +38,7 @@ router.post("/signup",
             return res.status(500).json({ errors: errors.array() });
         }
         try {
-            bcrypt.hash(req.body.password,  saltRounds, (err, hash) => {
+            bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
                 const user = Users.create({ ...req.body, password: hash })
                 user.then(user => {
                     const authToken = jwt.sign(user.id, JWT_SECRET);
@@ -85,22 +85,23 @@ router.post("/signin",
                 }
             });
         } catch (error) {
+            console.log(error)
             res.status(500).send("Internal Server Error")
         }
     }
 )
 
 router.get("/login/success", (req, res) => {
-	if (req.user) {
+    if (req.user) {
         const authToken = jwt.sign(req.user._id, JWT_SECRET)
-		res.status(200).json({
-			error: false,
-			message: "Successfully Loged In",
-			userId: authToken,
-		});
-	} else {
-		res.status(403).json({ error: true, message: "Not Authorized" });
-	}
+        res.status(200).json({
+            error: false,
+            message: "Successfully Loged In",
+            userId: authToken,
+        });
+    } else {
+        res.status(403).json({ error: true, message: "Not Authorized" });
+    }
 });
 
 router.get("/login/failed", (req, res) => {
@@ -113,20 +114,20 @@ router.get("/login/failed", (req, res) => {
 router.get("/google", passport.authenticate("google", ["profile", "email"]));
 
 router.get(
-	"/google/callback",
-	passport.authenticate("google", {
-		successRedirect: "https://quizro-quiz.vercel.app/register",
-		failureRedirect: "/login/failed",
-	})
+    "/google/callback",
+    passport.authenticate("google", {
+        successRedirect: "https://quizro-quiz.vercel.app/register",
+        failureRedirect: "/login/failed",
+    })
 );
 
 router.get("/logout", (req, res) => {
-    if(req.user !== undefined){
-        req.logout(()=>{
+    if (req.user !== undefined) {
+        req.logout(() => {
             return res.status(200).redirect("https://quizro-quiz.vercel.app/");
         });
     }
-    else{
+    else {
         res.status(200).redirect("https://quizro-quiz.vercel.app/")
     }
 });

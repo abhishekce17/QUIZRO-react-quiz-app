@@ -60,6 +60,7 @@ const Authentication = () => {
       setLoader(false)
       setInvalidCredentials(true)
     }
+    console.log(apiData)
   }
 
   function handleChange(e) {
