@@ -45,7 +45,7 @@ const Authentication = () => {
     console.log(credential)
     try {
 
-      const apiData = await fetch('https://quizro-quiz-backend.vercel.app//api/auth/signin', {
+      const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
