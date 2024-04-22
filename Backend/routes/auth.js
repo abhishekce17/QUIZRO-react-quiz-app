@@ -65,6 +65,7 @@ router.post("/signin",
         try {
             Users.findOne({ email: email }, function (err, findUser) {
                 if (err) {
+                    console.log(err)
                     res.status(500).json({ error: "Email or Password is wrong" });
                 }
                 else {
@@ -85,6 +86,7 @@ router.post("/signin",
                 }
             });
         } catch (error) {
+            console.log(error)
             res.status(500).send("Internal Server Error")
         }
     }
