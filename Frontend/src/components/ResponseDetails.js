@@ -62,7 +62,9 @@ const ResponseDetails = () => {
                                             return <div key={k} >
                                                 <p>Q{j + 1}. {q} </p>
                                                 <ul>
-                                                    <li> {res[q]} </li>
+                                                    {
+                                                        res[q].map(opt => <li key={opt + j} > {opt} </li>)
+                                                    }
                                                 </ul>
                                             </div>
                                         })}
@@ -73,7 +75,7 @@ const ResponseDetails = () => {
                                     <p>Obtained Points : {val["Total Point"]} </p>
                                 </div>
                                 <div className='submition-time'>
-                                    <label> submitted at : {new Date(val["submited at"]).toUTCString().slice(0, -7)}</label>
+                                    <label> submitted at : {(new Date(val["submited at"])).toLocaleDateString() + " " + (new Date(val["submited at"]).toLocaleTimeString())}</label>
                                 </div>
                             </div>
                         </div>
