@@ -10,7 +10,7 @@ app.use(cors())
 
 connectToMongo();
 app.use(express.static(__dirname + "/public"));
-app.set("view engine", "ejs");
+// app.set("view engine", "ejs");
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
