@@ -48,7 +48,7 @@ const CreateQuiz = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem("token")
+        'Authorization': localStorage.getItem("token")
       },
       body: JSON.stringify(quizDATA),
     })

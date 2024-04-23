@@ -16,7 +16,7 @@ const QuizDash = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token': localStorage.getItem("token")
+        'Authorization': localStorage.getItem("token")
       }
     })
     const data = await apiData.json()
