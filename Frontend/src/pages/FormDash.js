@@ -67,7 +67,7 @@ const FormDash = () => {
               </div>
               <div className="quiz-status-timeline" >
                 <p> <GoPrimitiveDot style={{ position: "relative", top: "3px", color: "red" }} /> {eachtData.QuizStatus ? "live" : "expired"}</p>
-                <p>created at {new Date(eachtData["Created at"]).toUTCString().slice(0, -7)}</p>
+                <p>created at {(new Date(eachtData["Created at"])).toLocaleDateString() + " " + (new Date(eachtData["Created at"])).toLocaleTimeString()}</p>
               </div>
             </div>
           )
