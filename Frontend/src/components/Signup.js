@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import "./signup.css"
 import Loading from './Loading'
+import configUrl from "../config.json"
 
 const Signup = () => {
   let navigate = useNavigate()
@@ -28,7 +29,7 @@ const Signup = () => {
 
   async function handleEvent() {
     setLoader(true);
-    const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signup', {
+    const apiData = await fetch(`${configUrl.baseURL}/api/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

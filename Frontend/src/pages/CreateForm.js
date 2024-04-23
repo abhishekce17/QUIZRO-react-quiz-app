@@ -3,8 +3,9 @@ import AddQuestion from "../components/AddQuestion"
 import PersonalInfo from "../components/PersonalInfo"
 import { VscDiffAdded } from "react-icons/vsc"
 import "./CreateQuiz.css"
-import {FormContext} from "../Context/FormAllState"
+import { FormContext } from "../Context/FormAllState"
 import { useNavigate } from "react-router-dom"
+import configUrl from "../config.json"
 
 const CreateForm = () => {
   const context = useContext(FormContext)
@@ -15,35 +16,35 @@ const CreateForm = () => {
     })
   }
   async function createForm(e) {
-      const quizData = {
-        "quizData": {
-          "userId": "",
-          "Title": context.titleDescription[0].quizTitle,
-          "Description": context.titleDescription[0].quizDescription,
-          "Required Information": {
-            "status": context.personalInfo.personalInfoRequirement.status,
-            "infoFields": {
-              "Name": context.personalInfo.personalInfoRequirement.infoFields.Name,
-              "Email": context.personalInfo.personalInfoRequirement.infoFields.Email,
-              "extraFields": context.personalInfo.personalInfoRequirement.infoFields.extraFields 
-            }
-          },
-          "Form Questions": context.quizQuestion[0]
-        }
-      }
-  
-      const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/quizoperations/createForm', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'auth-token' : localStorage.getItem("token")
+    const quizData = {
+      "quizData": {
+        "userId": "",
+        "Title": context.titleDescription[0].quizTitle,
+        "Description": context.titleDescription[0].quizDescription,
+        "Required Information": {
+          "status": context.personalInfo.personalInfoRequirement.status,
+          "infoFields": {
+            "Name": context.personalInfo.personalInfoRequirement.infoFields.Name,
+            "Email": context.personalInfo.personalInfoRequirement.infoFields.Email,
+            "extraFields": context.personalInfo.personalInfoRequirement.infoFields.extraFields
+          }
         },
-        body: JSON.stringify(quizData),
-      })
-      if(apiData.status===200){
-        context.clearState()
-        navigate("/quiztools/dashboard/forms")
+        "Form Questions": context.quizQuestion[0]
       }
+    }
+
+    const apiData = await fetch(`${configUrl.baseURL}/api/quizoperations/createForm`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem("token")
+      },
+      body: JSON.stringify(quizData),
+    })
+    if (apiData.status === 200) {
+      context.clearState()
+      navigate("/quiztools/dashboard/forms")
+    }
 
   }
   function addQuestion() {
@@ -51,12 +52,12 @@ const CreateForm = () => {
     context.quizQuestion[1]((prev) => {
       return [...prev, { type: "mcq", question: "", option: [""] }]
     })
-    context.optionCount[1]((prev)=> [...prev, 1])
+    context.optionCount[1]((prev) => [...prev, 1])
   }
 
   function randomizeOptions(e) {
     const { name } = e.target.dataset
-    if(name === "quizDescription" || name === "quizTitle"){
+    if (name === "quizDescription" || name === "quizTitle") {
       return context.titleDescription[1]({ ...context.titleDescription[0], [name]: e.target.value })
     }
     else if (name === "quizTimer" || name === "closingTime") return context.quizSettingInfo[1]({ ...context.quizSettingInfo[0], [name]: [!context.quizSettingInfo[0][name][0], context.quizSettingInfo[0][name][1]] })
@@ -70,7 +71,7 @@ const CreateForm = () => {
 
 
   return (
-    <form className="create-section" method="post" onSubmit={(e)=>{
+    <form className="create-section" method="post" onSubmit={(e) => {
       e.preventDefault()
       createForm()
     }} >

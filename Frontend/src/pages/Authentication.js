@@ -6,6 +6,7 @@ import axios from "axios";
 import "./Authentication.css"
 import { Link, Navigate, useNavigate } from "react-router-dom"
 import Loading from "../components/Loading";
+import configUrl from "../config.json"
 
 const Authentication = () => {
   const [showStatus, setShowStatus] = useState(true)
@@ -23,7 +24,7 @@ const Authentication = () => {
 
   const getUser = async () => {
     try {
-      const url = `https://quizro-quiz-backend.vercel.app/api/auth/login/success`;
+      const url = `${configUrl.baseURL}/api/auth/login/success`;
       const apiData = await axios.get(url, { withCredentials: true });
       if (apiData.status === 200) {
         localStorage.setItem("token", apiData.data.userId)
@@ -45,7 +46,7 @@ const Authentication = () => {
     console.log(credential)
     try {
 
-      const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/auth/signin', {
+      const apiData = await fetch(`${configUrl.baseURL}/api/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,7 +4,8 @@ import PersonalInfo from "../components/PersonalInfo"
 import { VscDiffAdded } from "react-icons/vsc"
 import "./CreateQuiz.css"
 import QuizContext from "../Context/quizContext"
-import  { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
+import configUrl from "../config.json"
 
 const CreateQuiz = () => {
   const context = useContext(QuizContext)
@@ -14,7 +15,7 @@ const CreateQuiz = () => {
       return { ...prev, status: !prev.status }
     })
   }
-   async function createQuiz(e) {
+  async function createQuiz(e) {
     const quizDATA = {
       "quizData": {
         "userId": "",
@@ -25,7 +26,7 @@ const CreateQuiz = () => {
           "infoFields": {
             "Name": context.personalInfo.personalInfoRequirement.infoFields.Name,
             "Email": context.personalInfo.personalInfoRequirement.infoFields.Email,
-            "extraFields": context.personalInfo.personalInfoRequirement.infoFields.extraFields 
+            "extraFields": context.personalInfo.personalInfoRequirement.infoFields.extraFields
           }
         },
         "Quiz Setting Info": {
@@ -43,15 +44,15 @@ const CreateQuiz = () => {
       "answerData": context.quizAsnwer[0],
     }
 
-    const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/quizoperations/create', {
+    const apiData = await fetch(`${configUrl.baseURL}/api/quizoperations/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token' : localStorage.getItem("token")
+        'auth-token': localStorage.getItem("token")
       },
       body: JSON.stringify(quizDATA),
     })
-    if(apiData.status===200){
+    if (apiData.status === 200) {
       context.clearState()
       navigate("/quiztools/dashboard/quizes")
     }
@@ -63,9 +64,9 @@ const CreateQuiz = () => {
     context.quizQuestion[1]((prev) => {
       return [...prev, { type: "mcq", point: "", question: "", option: [""] }]
     })
-    context.optionCount[1]((prev)=> [...prev, 1])
+    context.optionCount[1]((prev) => [...prev, 1])
     let temp = context.quizAsnwer[0]
-    temp.push({questionId : "", question : "", answer : []})
+    temp.push({ questionId: "", question: "", answer: [] })
     context.quizAsnwer[1](temp)
   }
 
@@ -79,7 +80,7 @@ const CreateQuiz = () => {
 
   function randomizeOptions(e) {
     const { name } = e.target.dataset
-    if(name === "quizDescription" || name === "quizTitle"){
+    if (name === "quizDescription" || name === "quizTitle") {
       return context.titleDescription[1]({ ...context.titleDescription[0], [name]: e.target.value })
     }
     else if (name === "quizTimer" || name === "closingTime") return context.quizSettingInfo[1]({ ...context.quizSettingInfo[0], [name]: [!context.quizSettingInfo[0][name][0], context.quizSettingInfo[0][name][1]] })
@@ -92,8 +93,8 @@ const CreateQuiz = () => {
 
 
 
-  return ( localStorage.getItem("token")=== null ? <Navigate to ="/login" /> :
-    <form className="create-section" method="post" onSubmit={(e)=>{
+  return (localStorage.getItem("token") === null ? <Navigate to="/login" /> :
+    <form className="create-section" method="post" onSubmit={(e) => {
       e.preventDefault()
       createQuiz()
     }} >
@@ -113,17 +114,17 @@ const CreateQuiz = () => {
           <label>Respondents can see Leaderboard in the end</label>
           <div className={context.quizSettingInfo[0].showLeaderboard ? "btn" : "btn active"} data-name="showLeaderboard" onClick={randomizeOptions} ></div>
         </div>
-        { context.quizSettingInfo[0].showLeaderboard &&
-        <>
-        <div>
-          <label>Respondents can see total points and points received for each question</label>
-          <div className={context.quizSettingInfo[0].showToatalEachPoints ? "btn" : "btn active"} data-name="showToatalEachPoints" onClick={randomizeOptions} ></div>
-        </div>
-        <div>
-          <label>Respondents can see correct answers after grades are released</label>
-          <div className={context.quizSettingInfo[0].showCorrectAnswer ? "btn" : "btn active"} data-name="showCorrectAnswer" onClick={randomizeOptions} ></div>
-        </div>
-        </>
+        {context.quizSettingInfo[0].showLeaderboard &&
+          <>
+            <div>
+              <label>Respondents can see total points and points received for each question</label>
+              <div className={context.quizSettingInfo[0].showToatalEachPoints ? "btn" : "btn active"} data-name="showToatalEachPoints" onClick={randomizeOptions} ></div>
+            </div>
+            <div>
+              <label>Respondents can see correct answers after grades are released</label>
+              <div className={context.quizSettingInfo[0].showCorrectAnswer ? "btn" : "btn active"} data-name="showCorrectAnswer" onClick={randomizeOptions} ></div>
+            </div>
+          </>
         }
         <div className="timer" >
           <label>Quiz closing time</label>

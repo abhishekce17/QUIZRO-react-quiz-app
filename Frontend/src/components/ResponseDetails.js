@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { BsChevronDown } from 'react-icons/bs'
 import './ResponseDetails.css'
+import url from "../config.json"
 
 const ResponseDetails = () => {
     const [details, setDetails] = useState()
     const location = useLocation()
     async function fetchDetails() {
-        const apiData = await fetch("https://quizro-quiz-backend.vercel.app/api/quizoperations/getResponseDetails", {
+        const apiData = await fetch(`${url.baseURL}/api/quizoperations/getResponseDetails`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ const ResponseDetails = () => {
                                     return <div key={j} className='each-question' >
                                         {Object.keys(res).map((q, k) => {
                                             return <div key={k} >
-                                                <p>Q{j+1}. {q} </p>
+                                                <p>Q{j + 1}. {q} </p>
                                                 <ul>
                                                     <li> {res[q]} </li>
                                                 </ul>
@@ -69,7 +70,7 @@ const ResponseDetails = () => {
                                 })
                                 }
                                 <div>
-                                    <p>Obtained Points : {val["Total Point"] } </p>
+                                    <p>Obtained Points : {val["Total Point"]} </p>
                                 </div>
                                 <div className='submition-time'>
                                     <label> submitted at : {new Date(val["submited at"]).toUTCString().slice(0, -7)}</label>

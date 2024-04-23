@@ -5,6 +5,7 @@ import "../pages/demo.css"
 import StartFormResponse from './StartFormResponse'
 import StartQuiz from './StartQuiz'
 import Loading from './Loading'
+import configUrl from "../config.json"
 
 const Responses = () => {
   const location = useLocation()
@@ -26,7 +27,7 @@ const Responses = () => {
 
   async function startQuiz(e) {
     e.preventDefault()
-    const submitInfo = await fetch("https://quizro-quiz-backend.vercel.app/api/submit/responses/submitPersonalInfo", {
+    const submitInfo = await fetch(`${configUrl.baseURL}/api/submit/responses/submitPersonalInfo`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ const Responses = () => {
     }
   }
   async function fetchQuizQuestions() {
-    const url = location.pathname.split("/")[3] === "quiz" ? "https://quizro-quiz-backend.vercel.app/api/submit/responses/getQuizQestions" : "https://quizro-quiz-backend.vercel.app/api/submit/responses/getFormQestions"
+    const url = location.pathname.split("/")[3] === "quiz" ? `${configUrl.baseURL}/api/submit/responses/getQuizQestions` : `${configUrl.baseURL}/api/submit/responses/getFormQestions`
     const fetchQuestions = await fetch(url, {
       method: "POST",
       headers: {

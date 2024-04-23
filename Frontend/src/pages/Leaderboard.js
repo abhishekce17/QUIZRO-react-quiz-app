@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import '../components/ResponseDetails.css'
+import configurl from "../config.json"
 
 
 const Leaderboard = () => {
@@ -9,7 +10,7 @@ const Leaderboard = () => {
     const [details, setDetails] = useState()
     const location = useLocation()
     async function fetchDetails() {
-        const apiData = await fetch("https://quizro-quiz-backend.vercel.app/api/quizoperations/leaderboardDetails", {
+        const apiData = await fetch(`${configurl.baseURL}/api/quizoperations/leaderboardDetails`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

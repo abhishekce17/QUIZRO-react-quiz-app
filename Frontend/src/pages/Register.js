@@ -4,6 +4,7 @@ import { GrMail } from "react-icons/gr"
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom"
 import "./Register.css"
+import configUrl from "../config.json"
 
 const Register = () => {
   let navigate = useNavigate()
@@ -12,21 +13,21 @@ const Register = () => {
   //   window.open("https://quizro-quiz-backend.vercel.app/api/auth/google/callback","_self")
   // }
 
-	const getUser = async () => {
-		try {
-			const url = `https://quizro-quiz-backend.vercel.app/api/auth/login/success`;
-			const apiData = await axios.get(url, { withCredentials: true });
-		  if(apiData.status === 200){
+  const getUser = async () => {
+    try {
+      const url = `${configUrl.baseURL}/api/auth/login/success`;
+      const apiData = await axios.get(url, { withCredentials: true });
+      if (apiData.status === 200) {
         localStorage.setItem("token", apiData.data.userId)
         navigate("/quiztools/create-quiz")
       }
-		} catch (err) {
-			console.log(err);
-		}
-	};
-	// useEffect(() => {
-	// 	// getUser();
-	// }, []);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // useEffect(() => {
+  // 	// getUser();
+  // }, []);
 
 
   return (

@@ -76,7 +76,7 @@ router.post("/signin",
                                 res.status(200).json({ authToken })
                             }
                             else {
-                                res.status(500).json({ error: "Email or Password is wrong" })
+                                res.status(401).json({ error: "Email or Password is wrong" })
                             }
                         });
                     }

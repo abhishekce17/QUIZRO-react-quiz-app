@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FiAlertCircle } from "react-icons/fi"
 import { useLocation, useNavigate } from 'react-router-dom'
+import configUrl from "../config.json"
 
 
 const StartQuiz = (props) => {
@@ -47,7 +48,7 @@ const StartQuiz = (props) => {
           if (hours === 0 && minutes === 0 && seconds === 0) {
             clearInterval(timer)
             handleSubmitEvent()
-            return { hours : 0 ,minute : 0, seconds : 0 }
+            return { hours: 0, minute: 0, seconds: 0 }
           }
           else if (hours !== 0 && minutes === 0 && seconds === 0) {
             return { hours: hours - 1, minute: "59", seconds: "59" }
@@ -59,7 +60,7 @@ const StartQuiz = (props) => {
             return { ...prev, seconds: seconds - 1 }
           }
         })
-        if( Number(QuizTimer.hours) === 0 &&  Number(QuizTimer.minute) === 0 && Number(QuizTimer.seconds) === 0){
+        if (Number(QuizTimer.hours) === 0 && Number(QuizTimer.minute) === 0 && Number(QuizTimer.seconds) === 0) {
           handleSubmitEvent()
         }
       }, 1000);
@@ -68,7 +69,7 @@ const StartQuiz = (props) => {
   }, [QuizTimer])
 
   async function handleSubmitEvent() {
-    const submitInfo = await fetch("https://quizro-quiz-backend.vercel.app/api/submit/responses/submitAnswers", {
+    const submitInfo = await fetch(`${configUrl.baseURL}/api/submit/responses/submitAnswers`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',

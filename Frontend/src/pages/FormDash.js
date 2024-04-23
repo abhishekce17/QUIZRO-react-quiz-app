@@ -4,13 +4,14 @@ import { BsThreeDotsVertical } from "react-icons/bs"
 import { Link } from "react-router-dom"
 // import {dataArrya} from "../allData"
 import { GoPrimitiveDot } from "react-icons/go"
+import configUrl from "../config.json"
 
 
 const FormDash = () => {
 
   const [userData, setUserData] = useState([])
   async function fetchData() {
-    const apiData = await fetch('https://quizro-quiz-backend.vercel.app/api/quizoperations/getdataForm', {
+    const apiData = await fetch(`${configUrl.baseURL}/api/quizoperations/getdataForm`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
